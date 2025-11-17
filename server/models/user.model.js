@@ -1,6 +1,15 @@
 import { getDbConnector } from "../db.js";
 
 
+
+export const getByEmail = async (email) => {
+  const db = await getDbConnector();
+
+  const [user] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
+  return user[0];
+
+}
+
 export const create = async (userInfo) => {
   const db = await getDbConnector();
 
