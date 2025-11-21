@@ -1,0 +1,12 @@
+#sign_up_button {
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    width: 200px;
+    height: 25px;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 10px;
+    
+}
