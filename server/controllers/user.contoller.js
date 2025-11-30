@@ -3,18 +3,18 @@ import { UsersModel } from "../models/user.model.js";
 
 export const createUser = async (req, res) => {
   try {
-    const { email, tag, password, first_name, last_name } = req.body;
+    const { email,name,password } = req.body;
 
-    if (!email || !tag || !password || !first_name || !last_name) {
+    if (!email || !password || !name) {
       throw new Error("Missing required fields");
     }
 
     await UsersModel.create({
       email,
-      tag,
+      tag: "#dark",
       password,
-      first_name,
-      last_name
+      first_name: name,
+      last_name: name
     })
 
     console.log("User created successfully");

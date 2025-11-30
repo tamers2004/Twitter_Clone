@@ -1,0 +1,26 @@
+#signup_modal {
+    border: 1px solid white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+#basic_input::placeholder {
+    color: grey;
+    font-size: 18px;
+
+}
+
+#basic_input {
+    padding-right: 5px;
+    color: white;
+    padding-left: 5px;
+    font-size: 18px;
+}
+
+#logo_wrapper {
+    width: 40px;
+    height: 40px;
+    align-self: center;
+}

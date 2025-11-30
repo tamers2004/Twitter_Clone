@@ -1,7 +1,7 @@
 import "./SignUpButton.css"
-const SignUpButton = ({ child }) => {
+const SignUpButton = ({ child, onClick }) => {
   return (
-    <button id="sign_up_button">{child}</button>
+    <button onClick={onClick} id="sign_up_button">{child}</button>
   )
 }
 

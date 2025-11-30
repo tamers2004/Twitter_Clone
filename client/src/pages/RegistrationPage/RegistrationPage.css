@@ -5,3 +5,12 @@
     align-items: center;
     gap: 10px;
 }
+
+#basic_input {
+    background-color: black;
+    border: 1px solid grey;
+    /* padding: 5px; */
+    width: 438px;
+    height: 56px;
+
+}
