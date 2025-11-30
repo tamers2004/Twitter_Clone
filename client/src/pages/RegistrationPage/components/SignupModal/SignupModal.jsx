@@ -4,24 +4,36 @@ import Logo from "../Logo/Logo"
 import SignUpButton from "../SignUpButton/SignUpButton"
 import "./SignupModal.css"
 import axios from "axios"
+import { useEffect } from "react"
 const SignupModal = () => {
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const createUserInServer = async () => {
-    const response = await axios.post("http://localhost:3000/register", {
-      name,
-      password,
-      email
-    })
+    setIsLoading(true)
 
+    try {
+
+      const response = await axios.post("http://localhost:3000/register", {
+        name,
+        password,
+        email
+      })
+    } catch (err) {
+      console.error(err);
+    }
+    setIsLoading(false);
     console.log(response.data);
   }
   
   
-
+  if (isLoading) {
+    return <h1>Loading...</h1>
+  }
 
   return (
     <div id="signup_modal">
