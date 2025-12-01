@@ -5,6 +5,7 @@ import SignUpButton from "../SignUpButton/SignUpButton"
 import "./SignupModal.css"
 import axios from "axios"
 import bcrypt from "bcryptjs";
+import LoadingScreen from "../LoadingScreen/LoadingScreen"
 
 const SignupModal = () => {
 
@@ -33,7 +34,7 @@ const SignupModal = () => {
   
   
   if (isLoading) {
-    return <h1>Loading...</h1>
+    return <LoadingScreen/>
   }
 
   return (
