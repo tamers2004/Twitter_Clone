@@ -4,7 +4,8 @@ import Logo from "../Logo/Logo"
 import SignUpButton from "../SignUpButton/SignUpButton"
 import "./SignupModal.css"
 import axios from "axios"
-import { useEffect } from "react"
+import bcrypt from "bcryptjs";
+
 const SignupModal = () => {
 
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ const SignupModal = () => {
 
       const response = await axios.post("http://localhost:3000/register", {
         name,
-        password,
+        password: await bcrypt.hash(password, 10),
         email
       })
     } catch (err) {
