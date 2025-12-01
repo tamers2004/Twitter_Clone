@@ -6,11 +6,6 @@ import "./SignupModal.css"
 import axios from "axios"
 import bcrypt from "bcryptjs";
 
-
-
-
-
-
 const SignupModal = () => {
 
   const [email, setEmail] = useState("");
