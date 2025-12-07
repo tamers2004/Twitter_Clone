@@ -4,7 +4,7 @@ import "./RightPanel.css"
 const RightPanel = () => {
   return (
     <div id="right_panel">
-      <Logo />
+      <Logo size="308px" />
     </div>
   )
 }
