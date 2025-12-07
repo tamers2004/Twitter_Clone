@@ -24,3 +24,11 @@ body {
 .logo {
   fill: white !important;
 }
+
+#main_titles h1 {
+  font-size: 60px;
+}
+
+#main_titles h3 {
+  font-size: 30px;
+}
