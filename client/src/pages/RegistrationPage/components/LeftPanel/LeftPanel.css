@@ -7,3 +7,22 @@
     align-items: center;
     content: center;
 }
+
+#entry_span {
+    color : white;
+    font-size: 20px;
+}
+
+.my-red-button {
+  background:blue;
+  border-radius: 25px;
+  width: 400px;
+  height: 50px;
+}
+
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
