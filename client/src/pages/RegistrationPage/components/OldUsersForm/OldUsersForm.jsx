@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Modal from "../../../../components/Modal/Modal"
 import AppleLogo from "../AppleLogo/AppleLogo"
-import SignUpButton from "../SignUpButton/SignUpButton"
+import GeneralButton from "../GeneralButton/GeneralButton"
 import "./OldUsersForm.css"
 import SignupModal from "../SignupModal/SignupModal"
 
@@ -38,10 +38,10 @@ const OldUsersForm = () => {
   
   return (
     <div id="old_users_form">
-      <SignUpButton child={<GoogleButton /> } />
-      <SignUpButton child={<AppleButton /> } />
+      <GeneralButton child={<GoogleButton /> } />
+      <GeneralButton child={<AppleButton /> } />
       <span>------------- or -----------</span>
-      <SignUpButton onClick={() => {setIsSignUpModalOpen(true)}} child={<CreateAccountButton /> } />
+      <GeneralButton onClick={() => {setIsSignUpModalOpen(true)}} child={<CreateAccountButton /> } />
       <Modal isOpen={isSignUpModalOpen} onClose={() => {setIsSignUpModalOpen(false) }} title="Sign up" children={<SignupModal />} />
     </div>
   )

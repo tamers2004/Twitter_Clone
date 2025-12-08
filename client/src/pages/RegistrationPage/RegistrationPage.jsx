@@ -1,5 +1,7 @@
 import Footer from "../../components/Modal/Footer/Footer"
 import Modal from "../../components/Modal/Modal"
+import SignInModal from "../../components/Modal/SignInModal/SignInModal"
+import TermsService from "../../components/Modal/TermsService/TermsService"
 import "./RegistrationPage.css"
 import LeftPanel from "./components/LeftPanel/LeftPanel"
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen"
@@ -17,10 +19,9 @@ const RegistrationPage = () => {
       <div className="page-container">
         <LeftPanel />
         <RightPanel />
+        
       </div>
       <Footer />
-
-
     </div>
   )
 }

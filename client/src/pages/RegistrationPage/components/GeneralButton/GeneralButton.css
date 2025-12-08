@@ -1,4 +1,4 @@
-#sign_up_button {
+#general_button {
     border-radius: 25px;
     display: flex;
     align-items: center;
@@ -10,5 +10,11 @@
     font-size: 20px;
     padding-left: 50px;
     padding-right: 50px;
-    
+    cursor: pointer;
+}
+
+
+#general-button:hover {
+    background-color: var(--hover-bg) !important;
+    color: var(--hover-text) !important;
 }
