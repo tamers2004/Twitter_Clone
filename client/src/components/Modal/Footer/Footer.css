@@ -1,0 +1,40 @@
+/* Footer container */
+.x-footer {
+  width: 100%;
+  padding: 16px 0;
+  background: #000;
+  /* background-color: green; */
+  flex-shrink: 0; /* prevent shrinking if using flex layout */
+  box-sizing: border-box;
+}
+
+/* Links inside footer */
+.x-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 16px;
+  font-size: 13px;
+  color: #71767b;
+  text-align: center; /* center multi-line wrap */
+  margin: 0; /* remove default ul/p margin if any */
+  padding: 0; /* remove default padding */
+}
+
+/* Individual link style */
+.x-footer-links a {
+  color: #71767b;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.x-footer-links a:hover {
+  text-decoration: underline;
+  color: #fff; /* subtle hover effect like Twitter */
+}
+
+/* Optional: separate span items */
+.x-footer-links span {
+  white-space: nowrap;
+}
