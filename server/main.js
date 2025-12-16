@@ -14,6 +14,7 @@ app.use(cors())
 app.post("/register", UserController.createUser);
 app.post("/login", UserController.login);
 app.post("/tweet/create", TweetController.createTweet);
+app.post("/tweet/like", UserController.likePost);
 
 //GETS
 

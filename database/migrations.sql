@@ -20,4 +20,18 @@ CREATE TABLE IF NOT EXISTS tweets (
 );
 
 
+CREATE TABLE IF NOT EXISTS likes (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  user_id BIGINT UNSIGNED NOT NULL,
+  tweet_id BIGINT UNSIGNED NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  deleted_at DATETIME,
+
+  INDEX idx_likes_user_id (user_id),
+  INDEX idx_likes_tweet_id (tweet_id),
+  INDEX idx_likes_user_tweet (user_id, tweet_id)
+);
+
+
+
 
