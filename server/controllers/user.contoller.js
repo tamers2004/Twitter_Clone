@@ -1,4 +1,5 @@
 import { UsersModel } from "../models/user.model.js";
+import { UsersService } from "../services/user.service.js"
 
 
 export const createUser = async (req, res) => {
@@ -46,6 +47,18 @@ export const login = async (req, res) => {
 
     return res.status(200).send({ success: "true" });
 
+  } catch (err) {
+    console.error("There was an error in user.controller", err);
+    return res.status(400).send({ success: "false" });
+  }
+}
+
+
+export const likePost = async (req, res) => {
+  try {
+    const { user_id, post_id } = req.body;
+    await UsersService.likePost(user_id, post_id);
+    return res.status(200).send({ success: "true" });
   } catch (err) {
     console.error("There was an error in user.controller", err);
     return res.status(400).send({ success: "false" });
