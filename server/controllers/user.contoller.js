@@ -3,6 +3,11 @@ import { UsersService } from "../services/user.service.js"
 import crypto from "crypto";
 
 
+
+const sleep = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+}
+
 const generateToken = () => {
   return crypto.randomBytes(32).toString("hex");
 }
@@ -74,6 +79,28 @@ export const likePost = async (req, res) => {
     const { user_id, post_id } = req.body;
     await UsersService.likePost(user_id, post_id);
     return res.status(200).send({ success: "true" });
+  } catch (err) {
+    console.error("There was an error in user.controller", err);
+    return res.status(400).send({ success: "false" });
+  }
+}
+
+
+export const getHomePageData = async (req, res) => {
+  try {
+    await sleep();
+    const token = req.headers.authorization.split(" ")[1];
+
+    const user = await UsersModel.getByToken(token);
+
+    if (!user) {
+      console.error("user not authorized");
+      return res.status(401).send({success: "false"})
+    } else {
+      return res.status(200).send({success: "true", user})
+    }
+
+
   } catch (err) {
     console.error("There was an error in user.controller", err);
     return res.status(400).send({ success: "false" });

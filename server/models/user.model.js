@@ -1,6 +1,12 @@
 import { getDbConnector } from "../db.js";
 
 
+export const getByToken = async (token) => {
+  const db = await getDbConnector();
+
+  const [user] = await db.query("SELECT * FROM users WHERE token = ?", [token]);
+  return user[0];
+}
 
 export const get = async (id) => {
   const db = await getDbConnector();

@@ -17,6 +17,7 @@ app.post("/tweet/create", TweetController.createTweet);
 app.post("/tweet/like", UserController.likePost);
 
 //GETS
+app.get("/homepage", UserController.getHomePageData);
 
 
 

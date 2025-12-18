@@ -4,6 +4,7 @@ import AppleLogo from "../AppleLogo/AppleLogo"
 import GeneralButton from "../GeneralButton/GeneralButton"
 import "./OldUsersForm.css"
 import SignupModal from "../SignupModal/SignupModal"
+import { useNavigate } from "react-router-dom";
 
 
 const AppleButton = () => {
@@ -30,8 +31,18 @@ const CreateAccountButton = () => {
   )
 }
 
+
+
+
 const OldUsersForm = () => {
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+
+  const onSuccess = () => {
+    setIsSignUpModalOpen(false);
+    navigate("/home");
+  }
 
   return (
     <div id="old_users_form">
@@ -39,7 +50,11 @@ const OldUsersForm = () => {
       <GeneralButton child={<AppleButton />} />
       <span>------------- or -----------</span>
       <GeneralButton onClick={() => { setIsSignUpModalOpen(true) }} child={<CreateAccountButton />} />
-      <Modal isOpen={isSignUpModalOpen} onClose={() => { setIsSignUpModalOpen(false) }} title="Sign up" children={<SignupModal onSuccess={() => setIsSignUpModalOpen(false)} />} />
+      <Modal
+        isOpen={isSignUpModalOpen}
+        onClose={() => { setIsSignUpModalOpen(false) }}
+        title="Sign up"
+        children={<SignupModal onSuccess={onSuccess} />} />
     </div>
   )
 }
