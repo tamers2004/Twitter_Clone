@@ -21,9 +21,16 @@ export const getByEmail = async (email) => {
 export const create = async (userInfo) => {
   const db = await getDbConnector();
 
-  await db.query("INSERT INTO users (email, tag, password, first_name, last_name ) VALUES (?, ?, ?, ?, ?)",
-    [userInfo.email, userInfo.tag, userInfo.password, userInfo.first_name, userInfo.last_name]);
+  await db.query("INSERT INTO users (email, tag, password, token, first_name, last_name ) VALUES (?, ?, ?, ?, ?, ?)",
+    [userInfo.email, userInfo.tag, userInfo.password, userInfo.token, userInfo.first_name, userInfo.last_name]);
 
+}
+
+
+export const update = async (id, params) => {
+  const db = await getDbConnector();
+
+  await db.query("UPDATE users SET ? WHERE id = ?", [params, id]);
 }
 
 export * as UsersModel from "../models/user.model.js";

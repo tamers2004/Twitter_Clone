@@ -8,7 +8,7 @@ import SignupModal from "../SignupModal/SignupModal"
 
 const AppleButton = () => {
   return (
-    <p style={{display:"flex", alignItems:"center", justifyContent: "center", gap:"5px"}}>
+    <p style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "5px" }}>
       <AppleLogo /> <span>Sign up with Apple</span>
     </p>
   )
@@ -16,7 +16,7 @@ const AppleButton = () => {
 
 const GoogleButton = () => {
   return (
-    <p style={{display:"flex", alignItems:"center", justifyContent: "center", gap:"5px"}}>
+    <p style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "5px" }}>
       <span>Sign up with Google</span>
     </p>
   )
@@ -24,8 +24,8 @@ const GoogleButton = () => {
 
 const CreateAccountButton = () => {
   return (
-    <p style={{display:"flex", alignItems:"center", justifyContent: "center", gap:"5px"}}>
-     <span>Create an Account</span>
+    <p style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "5px" }}>
+      <span>Create an Account</span>
     </p>
   )
 }
@@ -33,16 +33,13 @@ const CreateAccountButton = () => {
 const OldUsersForm = () => {
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
-
-
-  
   return (
     <div id="old_users_form">
-      <GeneralButton child={<GoogleButton /> } />
-      <GeneralButton child={<AppleButton /> } />
+      <GeneralButton child={<GoogleButton />} />
+      <GeneralButton child={<AppleButton />} />
       <span>------------- or -----------</span>
-      <GeneralButton onClick={() => {setIsSignUpModalOpen(true)}} child={<CreateAccountButton /> } />
-      <Modal isOpen={isSignUpModalOpen} onClose={() => {setIsSignUpModalOpen(false) }} title="Sign up" children={<SignupModal />} />
+      <GeneralButton onClick={() => { setIsSignUpModalOpen(true) }} child={<CreateAccountButton />} />
+      <Modal isOpen={isSignUpModalOpen} onClose={() => { setIsSignUpModalOpen(false) }} title="Sign up" children={<SignupModal onSuccess={() => setIsSignUpModalOpen(false)} />} />
     </div>
   )
 }

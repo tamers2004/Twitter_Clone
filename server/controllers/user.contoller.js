@@ -1,25 +1,35 @@
 import { UsersModel } from "../models/user.model.js";
 import { UsersService } from "../services/user.service.js"
+import crypto from "crypto";
+
+
+const generateToken = () => {
+  return crypto.randomBytes(32).toString("hex");
+}
 
 
 export const createUser = async (req, res) => {
   try {
-    const { email,name,password } = req.body;
+    const { email, name, password } = req.body;
 
     if (!email || !password || !name) {
       throw new Error("Missing required fields");
     }
+
+    // 1. create random token,
+    const token = generateToken();
 
     await UsersModel.create({
       email,
       tag: "#dark",
       password,
       first_name: name,
-      last_name: name
+      last_name: name,
+      token
     })
 
     console.log("User created successfully");
-    return res.status(200).send({ success: "true" })
+    return res.status(200).send({ success: "true", token })
   } catch (err) {
     console.info("There was an error in user.controller", err);
     return res.status(400).send({ success: "false" })
@@ -34,7 +44,7 @@ export const login = async (req, res) => {
     if (!email || !password) {
       throw new Error("Missing required fields");
     }
-    
+
     const user = await UsersModel.getByEmail(email);
 
     if (!user) {
@@ -44,9 +54,14 @@ export const login = async (req, res) => {
     }
 
     console.log("User logged in successfully");
-
-    return res.status(200).send({ success: "true" });
-
+    // 1. create random token,
+    const token = generateToken();
+    // 2. save token in database
+    await UsersModel.update(user.id, {
+      token
+    })
+    // 3. return token to user
+    return res.status(200).send({ success: "true", token });
   } catch (err) {
     console.error("There was an error in user.controller", err);
     return res.status(400).send({ success: "false" });
