@@ -13,12 +13,14 @@ docker compose up -d
 # Start server
 echo "🧠 Starting server..."
 cd "$ROOT_DIR/server"
+npm install
 npm run dev &
 SERVER_PID=$!
 
 # Start client
 echo "🎨 Starting client..."
 cd "$ROOT_DIR/client"
+npm install
 npm run dev &
 CLIENT_PID=$!
 

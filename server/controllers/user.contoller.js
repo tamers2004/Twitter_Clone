@@ -34,7 +34,11 @@ export const createUser = async (req, res) => {
     })
 
     console.log("User created successfully");
-    return res.status(200).send({ success: "true", token })
+    return res.status(200).send({ success: "true", token, user: {
+      email,
+      name,
+    } })
+    
   } catch (err) {
     console.info("There was an error in user.controller", err);
     return res.status(400).send({ success: "false" })
@@ -44,6 +48,7 @@ export const createUser = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
+    console.log("Login request received");
     const { email, password } = req.body;
 
     if (!email || !password) {

@@ -5,6 +5,8 @@ import "./SignupModal.css"
 import axios from "axios"
 import bcrypt from "bcryptjs";
 import LoadingScreen from "../LoadingScreen/LoadingScreen"
+import { useContext } from "react"
+import { UserContext } from "../../../../providers/UserContextProvider"
 
 const SignupModal = ({ onSuccess }) => {
 
@@ -12,6 +14,7 @@ const SignupModal = ({ onSuccess }) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const userContext = useContext(UserContext);
 
   const createUserInServer = async () => {
     setIsLoading(true)
@@ -26,6 +29,8 @@ const SignupModal = ({ onSuccess }) => {
 
       const token = response.data.token;
       localStorage.setItem("token", token);
+      userContext.setIsUserLoggedIn(true);
+      userContext.setUser(response.data.user);
       onSuccess();
 
     } catch (err) {

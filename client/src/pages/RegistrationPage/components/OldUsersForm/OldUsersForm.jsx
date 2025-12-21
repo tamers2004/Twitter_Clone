@@ -18,7 +18,7 @@ const AppleButton = () => {
 const GoogleButton = () => {
   return (
     <p style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "5px" }}>
-      <span>Sign up with Google</span>
+      <span>Sign up with Google </span>
     </p>
   )
 }
@@ -46,7 +46,7 @@ const OldUsersForm = () => {
 
   return (
     <div id="old_users_form">
-      <GeneralButton child={<GoogleButton />} />
+      <GeneralButton onClick={() => {navigate("/test")}} child={<GoogleButton />} />
       <GeneralButton child={<AppleButton />} />
       <span>------------- or -----------</span>
       <GeneralButton onClick={() => { setIsSignUpModalOpen(true) }} child={<CreateAccountButton />} />

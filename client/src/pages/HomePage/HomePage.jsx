@@ -3,7 +3,8 @@ import { useEffect, useState } from "react"
 import "./HomePage.css"
 import axios from "axios"
 import LoadingScreen from "../RegistrationPage/components/LoadingScreen/LoadingScreen";
-
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContextProvider";
 
 
 const getTokenFromLocalStorage = () => {
@@ -13,8 +14,8 @@ const getTokenFromLocalStorage = () => {
 const HomePage = () => {
 
   const token = getTokenFromLocalStorage();
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const userContext = useContext(UserContext);
 
   useEffect(() => {
 
@@ -46,12 +47,12 @@ const HomePage = () => {
     return <LoadingScreen />
   }
 
-  if (!isUserLoggedIn) {
+  if (!userContext.isUserLoggedIn) {
     return <div>YOU ARE NOT LOGGED IN! UNAUTHORISED</div>
   }
 
   return (
-    <div>WELCOME TO THE HOMEPAGE</div>
+    <div>WELCOME TO THE HOMEPAGE, {userContext.user?.name}</div>
   )
 }
 
