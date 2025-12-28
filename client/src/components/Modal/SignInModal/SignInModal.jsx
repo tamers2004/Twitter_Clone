@@ -1,23 +1,33 @@
 
 import GeneralButton from "../../../pages/RegistrationPage/components/GeneralButton/GeneralButton"
 import "./SignInModal.css"
-import { useState } from "react"
-import axios from "axios"
-import bcrypt from "bcryptjs"
+import { useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
+
+import { UserContext } from "../../../providers/UserContextProvider"
 
 const SignInModal = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const userContext = useContext(UserContext);
+  const navigate = useNavigate();
 
   const onSubmit = async () => {
-    axios.post("http://localhost:3000/login", {
-      email,
-      password: await bcrypt.hash(password, 10)
-    }).then((res) => {
-      console.log(res.data);
+    userContext.login(email, password).then(res => {
+      console.log({res})
+      const { success } = res.data;
+      if (success) {
+        userContext.setUser(res.data.user);
+        userContext.setIsUserLoggedIn(true);
+        navigate("/home");
+      }
     })
+    .catch(err => {
+      console.error(err);
+    })
+
   }
 
   return (

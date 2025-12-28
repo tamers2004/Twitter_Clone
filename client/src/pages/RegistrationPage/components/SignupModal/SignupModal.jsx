@@ -3,7 +3,6 @@ import { useState } from "react"
 import GeneralButton from "../GeneralButton/GeneralButton"
 import "./SignupModal.css"
 import axios from "axios"
-import bcrypt from "bcryptjs";
 import LoadingScreen from "../LoadingScreen/LoadingScreen"
 import { useContext } from "react"
 import { UserContext } from "../../../../providers/UserContextProvider"
@@ -23,7 +22,7 @@ const SignupModal = ({ onSuccess }) => {
 
       const response = await axios.post("http://localhost:3000/register", {
         name,
-        password: await bcrypt.hash(password, 10),
+        password,
         email
       })
 

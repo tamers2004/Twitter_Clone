@@ -7,7 +7,8 @@ export const UserContext = createContext({
     user: null,
     isUserLoggedIn: false,
     setIsUserLoggedIn: () => { },
-    setUser: () => { }
+    setUser: () => { },
+    login: (email, password) => { }
 })
 
 
@@ -16,8 +17,17 @@ const UserContextProvider = ({ children }) => {
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
 
+    const login = async (email, password) => {
+        const response = await axios.post("http://localhost:3000/login", {
+            email,
+            password
+        })
+
+        return response;
+    }
+
     return (
-        <UserContext.Provider value={{ user, isUserLoggedIn, setUser, setIsUserLoggedIn }}>
+        <UserContext.Provider value={{ user, isUserLoggedIn, setUser, setIsUserLoggedIn, login }}>
             {children}
         </UserContext.Provider>
     )

@@ -1,6 +1,7 @@
 import { UsersModel } from "../models/user.model.js";
 import { UsersService } from "../services/user.service.js"
 import crypto from "crypto";
+import bcrypt from "bcryptjs";
 
 
 
@@ -21,13 +22,16 @@ export const createUser = async (req, res) => {
       throw new Error("Missing required fields");
     }
 
-    // 1. create random token,
+    // 1. Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // 2. create random token,
     const token = generateToken();
 
     await UsersModel.create({
       email,
       tag: "#dark",
-      password,
+      password: hashedPassword,
       first_name: name,
       last_name: name,
       token
@@ -58,9 +62,14 @@ export const login = async (req, res) => {
     const user = await UsersModel.getByEmail(email);
 
     if (!user) {
-      return res.status(400).send({ success: "false", msg: "email doesnt exist" });
-    } else if (user.password !== password) {
-      return res.status(401).send({ success: "false", msg: "email or password incorrect" });
+      return res.status(400).send({ success: false, msg: "email doesnt exist" });
+    }
+
+    // Use bcrypt.compare to verify password against hashed password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    
+    if (!isPasswordValid) {
+      return res.status(401).send({ success: false, msg: "email or password incorrect" });
     }
 
     console.log("User logged in successfully");
@@ -71,10 +80,10 @@ export const login = async (req, res) => {
       token
     })
     // 3. return token to user
-    return res.status(200).send({ success: "true", token });
+    return res.status(200).send({ success: true, token });
   } catch (err) {
     console.error("There was an error in user.controller", err);
-    return res.status(400).send({ success: "false" });
+    return res.status(400).send({ success: false });
   }
 }
 
@@ -114,4 +123,3 @@ export const getHomePageData = async (req, res) => {
 
 
 export * as UserController from "../controllers/user.contoller.js";
-
