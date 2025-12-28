@@ -80,7 +80,7 @@ export const login = async (req, res) => {
       token
     })
     // 3. return token to user
-    return res.status(200).send({ success: true, token });
+    return res.status(200).send({ success: true, token, user });
   } catch (err) {
     console.error("There was an error in user.controller", err);
     return res.status(400).send({ success: false });

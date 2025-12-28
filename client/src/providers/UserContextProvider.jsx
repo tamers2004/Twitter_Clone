@@ -1,6 +1,7 @@
 import { createContext } from "react"
 import { useState, useEffect } from "react"
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 export const UserContext = createContext({
@@ -16,6 +17,8 @@ const UserContextProvider = ({ children }) => {
 
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+
 
     const login = async (email, password) => {
         const response = await axios.post("http://localhost:3000/login", {
@@ -23,8 +26,20 @@ const UserContextProvider = ({ children }) => {
             password
         })
 
+        const { token } = response.data;
+        localStorage.setItem("token", token);
+        setIsUserLoggedIn(true);
+        setUser(response.data.user);
+
         return response;
     }
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            setIsUserLoggedIn(true);
+        }
+    }, [])
 
     return (
         <UserContext.Provider value={{ user, isUserLoggedIn, setUser, setIsUserLoggedIn, login }}>

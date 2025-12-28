@@ -27,11 +27,6 @@ const HomePage = () => {
       .then((res) => {
         console.log(res.data);
         const success = res.data.success;
-        if (success === "true") {
-          setIsUserLoggedIn(true);
-        } else {
-          setIsUserLoggedIn(false);
-        }
       })
       .catch((err) => {
         console.error(err);
@@ -52,7 +47,7 @@ const HomePage = () => {
   }
 
   return (
-    <div>WELCOME TO THE HOMEPAGE, {userContext.user?.name}</div>
+    <div>WELCOME TO THE HOMEPAGE, {userContext.user?.first_name}</div>
   )
 }
 
