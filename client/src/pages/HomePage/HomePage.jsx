@@ -9,6 +9,27 @@ import NavBar from "../../components/NavBar/NavBar";
 import HomeFeed from "../../components/HomeFeed/HomeFeed";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
+const Feed = () => {
+  return (
+    <div style={{
+      width: "200px",
+      height:"100vh",
+      background:"green",
+      flex:"1"
+    }}>Feed</div>
+  )
+}
+
+const News = () => {
+  return (
+    <div style={{
+      width:"400px",
+      height:"100vh",
+      background:"yellow"
+    }}>News</div>
+  )
+}
+
 
 const getTokenFromLocalStorage = () => {
   return localStorage.getItem("token");
@@ -52,8 +73,8 @@ const HomePage = () => {
   return (
     <div className="home_page">
       <NavBar />
-      {/* <HomeFeed /> */}
-      {/* <Sidebar /> */}
+      <HomeFeed />
+      <Sidebar />
     </div>
   )
 }

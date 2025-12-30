@@ -1,0 +1,8 @@
+.home_page {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid springgreen;
+    width: 100%;
+}

@@ -2,9 +2,15 @@ import React from 'react'
 import "./HomeFeed.css"
 
 
+
+
 const HomeFeed = () => {
   return (
-    <div>HomeFeed</div>
+    <div style={{
+      flex: 1,
+      background: "red",
+      height: "100vh"
+    }}>HomeFeed</div>
   )
   
 }
