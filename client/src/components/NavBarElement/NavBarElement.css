@@ -1,0 +1,31 @@
+
+
+
+.nav_item_cont {
+    display: flex;
+    align-items: center;
+    border: 1px solid purple;
+}
+.nav_item_cont:hover {
+    border: 1px solid green;
+    cursor: pointer;
+    
+}
+.navbar_element {
+    display: flex;
+    align-items: center;
+    border: 1px solid purple;
+}
+
+.navbar_element svg {
+    fill: white;
+    width: 25px;
+    height: 25px;
+    border: 1px solid yellow;
+    /* background: white; */
+}
+
+.navbar_element p {
+    border: 1px solid green;
+
+}

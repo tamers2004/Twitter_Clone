@@ -5,6 +5,9 @@ import axios from "axios"
 import LoadingScreen from "../RegistrationPage/components/LoadingScreen/LoadingScreen";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContextProvider";
+import NavBar from "../../components/NavBar/NavBar";
+import HomeFeed from "../../components/HomeFeed/HomeFeed";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 
 const getTokenFromLocalStorage = () => {
@@ -47,7 +50,11 @@ const HomePage = () => {
   }
 
   return (
-    <div>WELCOME TO THE HOMEPAGE, {userContext.user?.first_name}</div>
+    <div className="home_page">
+      <NavBar />
+      {/* <HomeFeed /> */}
+      {/* <Sidebar /> */}
+    </div>
   )
 }
 
