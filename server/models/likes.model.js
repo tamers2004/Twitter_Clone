@@ -16,6 +16,13 @@ export const getByUserIdAndPostId = async (userID, postID) => {
   return like[0];
 }
 
+export const getAllLikes = async () => {
+  await new Promise((res, rej) => setTimeout(res, 4000));
+  const db = await getDbConnector();
+  const [likes] = await db.query("SELECT * FROM likes");
+  return likes;
+}
+
 
 export * as LikesModel from "../models/likes.model.js";
 
